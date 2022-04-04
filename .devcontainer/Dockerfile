@@ -100,9 +100,11 @@ RUN cd /opt \
     && sed -i 's/-DWITH_VNC=1/-DWITH_VNC=0/g' setup.py \
     # disable qt
     && sed -i '/pyqt5/d' setup.py \
+    && pip3 install . \
+    # https://github.com/pypa/pip/issues/4880
     && python3 setup.py install \
     # Werkzeug >= 2.1.0 fail
-    && pip install Werkzeug==2.0.3
+    && pip3 install Werkzeug==2.0.3
 
 # # Latest Nano S Plus SDK
 # RUN cd /opt && git clone --branch 1.0.2 https://github.com/LedgerHQ/nanosplus-secure-sdk.git nanosplus-secure-sdk

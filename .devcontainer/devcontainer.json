@@ -22,9 +22,13 @@
   "settings": {
     "terminal.integrated.profiles.linux": {
       "bash": {
+        "path": "/usr/bin/bash"
+      },
+      "fish": {
         "path": "/usr/bin/fish"
-      }
-    }
+      },
+    },
+    "terminal.integrated.defaultProfile.linux": "fish"
   },
   // Use 'features.docker-from-docker' to setup docker inside the container
   // for building the Docker images inside GitHub Codespaces.
