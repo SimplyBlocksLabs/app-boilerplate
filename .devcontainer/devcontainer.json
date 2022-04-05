@@ -1,14 +1,16 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
 // https://github.com/microsoft/vscode-dev-containers/tree/master/containers/ubuntu-18.04-git
 {
-  "name": "Ubuntu 20.04",
+  "name": "Ledger Development Environment",
   "dockerFile": "Dockerfile",
   "build": {
     "args": {
-      "APT_MIRROR": "${localEnv:APT_MIRROR}",
-      "PIP_INDEX": "${localEnv:PIP_INDEX}",
-      "PIP_INDEX_URL": "${localEnv:PIP_INDEX_URL}",
     }
+  },
+  // https://code.visualstudio.com/remote/advancedcontainers/environment-variables
+  // BOLOS_SDK can be one of NANOS_SDK, NANOX_SDK and NANOSPLUS_SDK
+  "remoteEnv": {
+    "BOLOS_SDK": "${containerEnv:NANOS_SDK}",
   },
   // The optional 'runArgs' property can be used to specify additional runtime arguments.
   "runArgs": [
@@ -30,25 +32,17 @@
     },
     "terminal.integrated.defaultProfile.linux": "fish"
   },
-  // Use 'features.docker-from-docker' to setup docker inside the container
-  // for building the Docker images inside GitHub Codespaces.
-  "features": {
-    "docker-from-docker": {
-      "version": "latest",
-      "moby": true
-    }
-  },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [3000],
   // Use 'portsAttributes' to set default properties for specific forwarded ports. More info: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
   "portsAttributes": {
     "5000": {
-      "label": "Ppeculos REST API",
+      "label": "Speculos Restful API",
       "onAutoForward": "notify"
     },
     "9999": {
-      "label": "Ppeculos ADPU Port",
-      "onAutoForward": "notify"
+      "label": "Speculos TCP Socket",
+      "onAutoForward": "silent"
     }
   },
   // Use 'otherPortsAttributes' to configure any ports that aren't configured using 'portsAttributes'.
